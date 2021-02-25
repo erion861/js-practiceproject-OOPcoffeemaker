@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-image: url(./img/coffeebeans.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-size: cover;
+}
+
+img {
+  width: auto;
+  height: 325px;
+}
+
+#kave {
+  width: auto;
+  height: 275px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0.5rem 2rem 1rem 2rem;
+  border: 2px solid brown;
+  border-radius: 8px;
+  background-color: black;
+  opacity: 0.88;
+}
+
+.container-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 0 auto;
+  border: 2px solid brown;
+  border-radius: 8px;
+  background-color: rgb(168, 163, 163);
+  opacity: 0.93;
+  color: white;
+}
+
+#coffee-machine {
+  display: flex;
+  align-items: center;
+}
+
+#input {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.button {
+  margin: 1rem;
+  text-align: center;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#coffee-type {
+  cursor: pointer;
+  margin: 1rem;
+  width: 10rem;
+  font-size: 1rem;
+  border: 1px solid #CCC;
+  height: 2rem;
+}
+
+#coffee-type:hover {
+  border: 2px solid black;
+}
+
+#make,
+#drink,
+#clear,
+#toggle {
+  width: 90px;
+  text-align: center;
+  padding: 0.5rem 0.2rem;
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+#make:hover,
+#drink:hover,
+#clear:hover,
+#toggle:hover {
+  outline: none;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border: 2px solid red;
+}
+
+#make:focus,
+#drink:focus,
+#clear:focus,
+#toggle:focus {
+  outline: none;
+}
+
+#output-text {
+  height: 100px;
+  padding-top: 30px;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#output {
+  height: 200px;
+  width: auto;
+}
+
+.sml-mug {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 8rem;
+  height: 80px;
+  border-left: 4px solid rgb(161, 19, 19);
+  border-right: 4px solid rgb(161, 19, 19);
+  border-bottom: 4px solid rgb(161, 19, 19);
+}
+
+.espresso {
+  height: 30px;
+  width: calc(8rem-8px);
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+}
+
