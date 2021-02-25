@@ -78,7 +78,7 @@ class CoffeMachine {
 }
 
 function makeCoffee() {
-  let coffeMachine = new CoffeMachine(200, true);
+  let coffeMachine = new CoffeMachine(200, false);
   coffeMachine.powerUp();
   coffeMachine.renderMug();
 };
