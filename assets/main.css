@@ -34,20 +34,6 @@ img {
   opacity: 0.88;
 }
 
-.container-output {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto 0 auto;
-  border: 2px solid brown;
-  border-radius: 8px;
-  background-color: rgb(168, 163, 163);
-  opacity: 0.93;
-  color: white;
-}
-
 #coffee-machine {
   display: flex;
   align-items: center;
@@ -115,6 +101,20 @@ label {
   outline: none;
 }
 
+.container-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 0 auto;
+  border: 2px solid brown;
+  border-radius: 8px;
+  background-color: rgb(168, 163, 163);
+  opacity: 0.93;
+  color: white;
+}
+
 #output-text {
   height: 100px;
   padding-top: 30px;
@@ -124,24 +124,56 @@ label {
 }
 
 #output {
-  height: 200px;
-  width: auto;
+  max-height: 200px;
+  width: 128px;
 }
 
 .sml-mug {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 8rem;
-  height: 80px;
+  justify-content: center;
+  align-items: flex-end;
+  width: 128px;
+  height: 90px;
+  border-left: 4px solid rgb(161, 19, 19);
+  border-right: 4px solid rgb(161, 19, 19);
+  border-bottom: 4px solid rgb(161, 19, 19);
+}
+
+.lrg-mug {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 128px;
+  height: 120px;
   border-left: 4px solid rgb(161, 19, 19);
   border-right: 4px solid rgb(161, 19, 19);
   border-bottom: 4px solid rgb(161, 19, 19);
 }
 
 .espresso {
+  display: inline-block;
   height: 30px;
-  width: calc(8rem-8px);
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.dblespresso {
+  display: inline-block;
+  height: 60px;
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.lungo {
+  display: inline-block;
+  height: 90px;
+  width: 120px;
   background-color: black;
   color: white;
   text-align: center;
