@@ -2,7 +2,7 @@
 
 const toggleBtn = document.getElementById('toggle');
 const startBtn = document.getElementById('make');
-const clear = document.getElementById('clear');
+const clearBtn = document.getElementById('clear');
 const input = document.getElementById('coffee-type');
 
 //CLASSES 
@@ -27,12 +27,6 @@ class SmallMug extends Mug {
   }
 }
 
-class MediumMug extends Mug {
-  constructor(name, size) {
-    super(name, size);
-  }
-}
-
 class LargeMug extends Mug {
   constructor(name, size) {
     super(name, size);
@@ -44,30 +38,28 @@ class CoffeMachine {
     this.water = water;
     this.power = false;
   }
+  toggle() {
+    if (toggleBtn.innerHTML === 'Off'){
+      toggleBtn.innerHTML = 'On';
+    } else {
+      toggleBtn.innerHTML = 'Off';
+    }
+  }
   powerUp(){
     if (toggleBtn.innerHTML === 'Off'){
+      console.log(this.power); 
       alert('Switch on the Coffee Machine, please!');
-      throw new Error(); 
+      throw new Error();
     }
     this.power = true;
     alert('Your coffee is being made, please wait...');
-    }
+  }
   createCoffee(){
     let newInput = input.value;
     let obj = JSON.parse(newInput);
     newInput = new Coffee(`${obj.name}`, `${obj.volume}`);
     console.log(newInput);
     return newInput;
-  }
-}
-
-// SWITCH
-
-function toggle() {
-  if (toggleBtn.innerHTML === 'Off'){
-    toggleBtn.innerHTML = 'On';
-  } else {
-    toggleBtn.innerHTML = 'Off';
   }
 }
 
@@ -81,23 +73,24 @@ function makeCoffee(event) {
   let newMug = newCoffee.volume < 80 ? new SmallMug('smallMug', '90') : new LargeMug('largeMug', '120');
   console.log(newCoffee, newMug);
   renderCoffee(newMug, newCoffee);
-  coffeeMachine.water = coffeeMachine.water - newCoffee.volume;
+  coffeeMachine.water -= newCoffee.volume;
   console.log(coffeeMachine.water);
   if (coffeeMachine.water <= 0) {
-    let input2 = prompt('please add more water (amount should be between 100 and 200):');
-    if (input2 == 0 || input2 == '' || input2 > 200 || input2 < 100) {
-      error();
+    let input2 = prompt('please add more water (min. amount 200, max. 500):');
+    if (isNaN(input2) || input2 > 500 || input2 < 200) {
+      input2 = 500;
     }
-    coffeeMachine.water = coffeeMachine.water + parseInt(input);
+    coffeeMachine.water += parseInt(input2);
     console.log(coffeeMachine.water);
   }
 };
 
 function renderCoffee(mug, coffee) {
  let output = document.getElementById('output');
+ let outputText = document.getElementById('output-text');
   output = mug.size < 100 ? output.innerHTML = `<div class="sml-mug"><div class="${coffee.name}">${coffee.volume} ml</div></div>` :
    output.innerHTML = `<div class="lrg-mug"><div class="${coffee.name}">${coffee.volume} ml</div></div>`;
-  return output;
+  outputText = outputText.innerHTML = `${coffee.name}`;
 }
 
 function error() {
@@ -105,8 +98,12 @@ function error() {
   output2.innerHTML = `<div class="sml-mug">no water, no coffee</div>`
 }
 
+function reloadPage() {
+  location.reload();
+}
 
 // EVENTLISTENERS
 
-toggleBtn.addEventListener('click', toggle);
+toggleBtn.addEventListener('click', coffeeMachine.toggle);
 startBtn.addEventListener('click', makeCoffee);
+clearBtn.addEventListener('click', reloadPage);
