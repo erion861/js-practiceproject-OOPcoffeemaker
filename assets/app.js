@@ -45,30 +45,34 @@ class CoffeMachine {
       toggleBtn.innerHTML = 'Off';
     }
   }
-  powerUp(){
+  hasPower(){
     if (toggleBtn.innerHTML === 'Off'){
-      console.log(this.power); 
-      alert('Switch on the Coffee Machine, please!');
-      throw new Error();
+      return false;
     }
-    this.power = true;
-    alert('Your coffee is being made, please wait...');
+    return true;
   }
   createCoffee(){
-    let newInput = input.value;
-    let obj = JSON.parse(newInput);
-    newInput = new Coffee(`${obj.name}`, `${obj.volume}`);
-    console.log(newInput);
-    return newInput;
+    if (this.hasPower()) {
+      alert('The power is on');
+      alert('Your coffee is being made, please wait.');
+      let newInput = input.value;
+      let obj = JSON.parse(newInput);
+      newInput = new Coffee(`${obj.name}`, `${obj.volume}`);
+      console.log(newInput);
+      return newInput;
+    } else {
+      alert('Switch on the Coffee Machine, please!');
+    }
   }
 }
+
 
 let coffeeMachine = new CoffeMachine(200, false);
 console.log(coffeeMachine);
 
 function makeCoffee(event) {
   event.preventDefault();
-  coffeeMachine.powerUp();
+  coffeeMachine.hasPower();
   let newCoffee = coffeeMachine.createCoffee();
   let newMug = newCoffee.volume < 80 ? new SmallMug('smallMug', '90') : new LargeMug('largeMug', '120');
   console.log(newCoffee, newMug);
@@ -76,7 +80,7 @@ function makeCoffee(event) {
   coffeeMachine.water -= newCoffee.volume;
   console.log(coffeeMachine.water);
   if (coffeeMachine.water <= 0) {
-    let input2 = prompt('please add more water (min. amount 200, max. 500):');
+    let input2 = prompt('please add more water (min. amount: 200, max.: 500):');
     if (isNaN(input2) || input2 > 500 || input2 < 200) {
       input2 = 500;
     }
@@ -91,11 +95,6 @@ function renderCoffee(mug, coffee) {
   output = mug.size < 100 ? output.innerHTML = `<div class="sml-mug"><div class="${coffee.name}">${coffee.volume} ml</div></div>` :
    output.innerHTML = `<div class="lrg-mug"><div class="${coffee.name}">${coffee.volume} ml</div></div>`;
   outputText = outputText.innerHTML = `${coffee.name}`;
-}
-
-function error() {
-  let output2 = document.getElementById('output');
-  output2.innerHTML = `<div class="sml-mug">no water, no coffee</div>`
 }
 
 function reloadPage() {
